@@ -2,7 +2,6 @@ package com.serial.platform.controllers;
 
 import com.serial.platform.Services.UserServiceImpl;
 import com.serial.platform.models.User;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
     @GetMapping("/api/admin/users")
-    public ResponseEntity<List<User>> listAllUsers() {
+    public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userServiceImpl.getAllUsers());
