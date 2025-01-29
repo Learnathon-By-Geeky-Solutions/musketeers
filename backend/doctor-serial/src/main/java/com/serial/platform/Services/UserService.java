@@ -1,13 +1,11 @@
 package com.serial.platform.Services;
 
-import com.serial.platform.models.User;
-
-import java.util.List;
+import com.serial.platform.payloads.UserDTO;
+import com.serial.platform.payloads.UserResponse;
 
 public interface UserService {
-    List<User> getAllUsers();
-    String createUser(User user);
-    User deleteUser(Long user_id);
-
-    User updateUser(Long userId, User user);
+    UserResponse getAllUsers(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
+    UserDTO createUser(UserDTO userDTO);
+    UserDTO deleteUser(Long user_id);
+    UserDTO updateUser(Long userId, UserDTO userDTO);
 }

@@ -1,15 +1,15 @@
 package com.serial.platform.controllers;
 
 import com.serial.platform.Services.UserServiceImpl;
+import com.serial.platform.config.AppConstants;
 import com.serial.platform.models.User;
+import com.serial.platform.payloads.UserDTO;
+import com.serial.platform.payloads.UserResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @RestController
 public class UserController {
@@ -17,44 +17,35 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
     @GetMapping("/api/admin/users")
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<UserResponse> getAllUsers(
+            @RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(name = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+            @RequestParam(name = "sortBy", defaultValue = AppConstants.SORT_USERS_BY, required = false) String sortBy,
+            @RequestParam(name = "sortOrder", defaultValue = AppConstants.SORT_ORDER, required = false) String sortOrder
+            ) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(userServiceImpl.getAllUsers());
+                .body(userServiceImpl.getAllUsers(pageNumber, pageSize, sortBy, sortOrder));
     }
 
     @PostMapping("/api/public/user")
-    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(userServiceImpl.createUser(user));
+                .body(userServiceImpl.createUser(userDTO));
     }
 
     @DeleteMapping("/api/admin/users/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
-        try {
-            User user = userServiceImpl.deleteUser(userId);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body("User deleted successfully");
-        } catch (ResponseStatusException e) {
-            return ResponseEntity
-                    .status(e.getStatusCode())
-                    .body(e.getReason());
-        }
+    public ResponseEntity<UserDTO> deleteUser(@PathVariable Long userId) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userServiceImpl.deleteUser(userId));
     }
 
     @PutMapping("/api/admin/users/{userId}")
-    public ResponseEntity<String> updateUser(@PathVariable Long userId, @Valid @RequestBody User user) {
-        try {
-            User updatedUser = userServiceImpl.updateUser(userId, user);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body("User updated successfully");
-        } catch (ResponseStatusException e) {
-            return ResponseEntity
-                    .status(e.getStatusCode())
-                    .body(e.getReason());
-        }
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @Valid @RequestBody UserDTO userDTO) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userServiceImpl.updateUser(userId, userDTO));
     }
 }
