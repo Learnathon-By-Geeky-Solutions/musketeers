@@ -2,7 +2,9 @@ package com.serial.platform.Services;
 
 import com.serial.platform.exceptions.APIException;
 import com.serial.platform.exceptions.ResourceNotFoundException;
+import com.serial.platform.models.Address;
 import com.serial.platform.models.User;
+import com.serial.platform.payloads.AddressDTO;
 import com.serial.platform.payloads.UserDTO;
 import com.serial.platform.payloads.UserResponse;
 import com.serial.platform.repositories.UserRepository;
@@ -37,10 +39,6 @@ public class UserServiceImpl implements UserService {
             throw new APIException("No User exists");
         }
 
-//        List<UserDTO> userDTOS = users.stream()
-//                .map(user -> modelMapper.map(user, UserDTO.class))
-//                .toList();
-
         List<UserDTO> userDTOS = new ArrayList<>();
         for (User user: users) {
             UserDTO userDTO = modelMapper.map(user, UserDTO.class);
@@ -59,6 +57,11 @@ public class UserServiceImpl implements UserService {
 
     public UserDTO createUser(UserDTO userDTO) {
         User user = modelMapper.map(userDTO, User.class);
+        // Ensuring bidirectional relationship
+        if (user.getAddress() != null) {
+            user.getAddress().setUser(user);
+        }
+
         Optional<User> existingUser = userRepository.findByNid(user.getNid());
         if (existingUser.isPresent()) {
             throw new APIException("User with nid: " + user.getNid() + " already exists");
@@ -80,10 +83,27 @@ public class UserServiceImpl implements UserService {
     public UserDTO updateUser(Long userId, UserDTO userDTO) {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
+        Address existingAddress = existingUser.getAddress();
+        AddressDTO addressDTO = userDTO.getAddress();
 
-        User user = modelMapper.map(userDTO, User.class);
-        user.setId(userId);
-        User updatedUser = userRepository.save(user);
+        if (userDTO.getNid() != null) existingUser.setNid(userDTO.getNid());
+        if (userDTO.getPassword() != null) existingUser.setPassword(userDTO.getPassword());
+        if (userDTO.getName() != null) existingUser.setName(userDTO.getName());
+        if (userDTO.getDob() != null) existingUser.setDob(userDTO.getDob());
+        if (userDTO.getBloodGroup() != null) existingUser.setBloodGroup(userDTO.getBloodGroup());
+        if (userDTO.getPhone() != null) existingUser.setPhone(userDTO.getPhone());
+        if (userDTO.getEmail() != null) existingUser.setEmail(userDTO.getEmail());
+        if (addressDTO != null) {
+            if (existingAddress == null) {
+                existingUser.setAddress(modelMapper.map(userDTO.getAddress(), Address.class));
+            } else {
+                if (addressDTO.getDivision() != null) existingAddress.setDivision(addressDTO.getDivision());
+                if (addressDTO.getDistrict() != null) existingAddress.setDistrict(addressDTO.getDistrict());
+                if (addressDTO.getSubDistrict() != null) existingAddress.setSubDistrict(addressDTO.getSubDistrict());
+                if (addressDTO.getUnionName() != null) existingAddress.setUnionName(addressDTO.getUnionName());
+            }
+        }
+        User updatedUser = userRepository.save(existingUser);
         return modelMapper.map(updatedUser, UserDTO.class);
     }
 }
