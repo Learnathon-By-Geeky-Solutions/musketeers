@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';;
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import DoctorSearch from './components/DoctorSearch';
+import Services from './components/Services';
+import Stats from './components/Stats';
+import Footer from './components/Footer';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+	const [isDark, setIsDark] = useState(false);
+	const [searchQuery, setSearchQuery] = useState({ name: '', specialty: '' });
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + Redowanur rahman</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	useEffect(() => {
+		document.documentElement.classList.toggle('dark', isDark);
+	}, [isDark]);
+
+	const handleSearch = (e) => {
+		e.preventDefault();
+		// Add search logic here
+	};
+
+	return (
+		<div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+			<Header isDark={isDark} setIsDark={setIsDark} />
+			<main>
+				<HeroSection />
+				<DoctorSearch handleSearch={handleSearch} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+				<Services />
+				<Stats />
+			</main>
+			<Footer />
+		</div>
+	);
 }
-
-export default App
