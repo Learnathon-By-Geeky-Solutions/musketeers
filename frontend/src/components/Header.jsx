@@ -1,30 +1,45 @@
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid"
 import { Link } from "react-router-dom"
+import { useTheme } from "../Contexts/ThemeContext";
 
-const Header = ({ isDark, setIsDark }) => {
+const Header = () => {
+    const { isDarkMode, setIsDarkMode } = useTheme();
+
     return (
-        <nav className="bg-white dark:bg-gray-800 shadow-sm">
+        <nav className={`${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} shadow-sm border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
-                    <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">MediBook</h1>
+                    <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                        MediBook
+                    </h1>
+                    
                     <div className="hidden md:flex space-x-6">
-                        <Link to='' className="text-gray-700 dark:text-gray-300 hover:text-blue-600">Home</Link>
-                        <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600">Services</a>
-                        <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600">Contact</a>
-                        <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600">Help</a>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                        <Link to='signup' className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                            Sign Up
+                        <Link to='/' className={`${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-800 hover:text-blue-600'}`}>
+                            Home
                         </Link>
-                        <Link to='signin' className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                        <Link to='#' className={`${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-800 hover:text-blue-600'}`}>
+                            Services
+                        </Link>
+                        <Link to='#' className={`${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-800 hover:text-blue-600'}`}>
+                            Contact
+                        </Link>
+                        <Link to='#' className={`${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-800 hover:text-blue-600'}`}>
+                            Help
+                        </Link>
+                    </div>
+
+                    <div className="flex items-center space-x-4">
+                        <Link 
+                            to='signin' 
+                            className={`px-4 py-2 rounded-lg ${isDarkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
+                        >
                             Sign In
                         </Link>
                         <button
-                            onClick={() => setIsDark(!isDark)}
-                            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600"
+                            onClick={() => setIsDarkMode(!isDarkMode)}
+                            className={`p-2 rounded-lg ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
                         >
-                            {isDark ? (
+                            {isDarkMode ? (
                                 <SunIcon className="h-6 w-6 text-yellow-400" />
                             ) : (
                                 <MoonIcon className="h-6 w-6 text-gray-600" />

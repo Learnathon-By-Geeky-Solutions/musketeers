@@ -7,22 +7,25 @@ import Error from './pages/Error.jsx'
 import Home from './pages/Home.jsx'
 import SignIn from './pages/SignIn.jsx'
 import SignUp from './pages/SignUp.jsx'
+import { ThemeProvider } from './Contexts/ThemeContext.jsx'
 
 const appRouter = createBrowserRouter([
   {
     path: '/',
-    element: <App/>,
-    errorElement: <Error/>,
+    element: <App />,
+    errorElement: <Error />,
     children: [
-      {path: '', element: <Home/>},
-      {path: 'signin', element: <SignIn/>},
-      {path: 'signup', element: <SignUp/>}
+      { path: '', element: <Home /> },
+      { path: 'signin', element: <SignIn /> },
+      { path: 'signup', element: <SignUp /> }
     ]
   }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={appRouter}/>
+    <ThemeProvider>
+      <RouterProvider router={appRouter} />
+    </ThemeProvider>
   </StrictMode>,
 )

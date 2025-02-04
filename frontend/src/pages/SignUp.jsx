@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../Contexts/ThemeContext';
 
 const SignUp = () => {
+  const { isDarkMode } = useTheme();
+
   const [formData, setFormData] = useState({
+    username: '',
     name: '',
     email: '',
     password: '',
@@ -26,27 +30,69 @@ const SignUp = () => {
     setErrorMessage('');
   };
 
+  // Container styling for full screen background.
+  const containerClass = isDarkMode
+    ? "min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+    : "min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8";
+
+  // Form container styling.
+  const formContainerClass = isDarkMode
+    ? "max-w-md w-full space-y-8 bg-gray-800 p-8 rounded-lg shadow-sm"
+    : "max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-sm";
+
+  // Heading styling.
+  const headingClass = isDarkMode
+    ? "mt-6 text-center text-3xl font-bold text-white"
+    : "mt-6 text-center text-3xl font-bold text-gray-900";
+
+  // Label styling.
+  const labelClass = isDarkMode
+    ? "block text-sm font-medium text-gray-300"
+    : "block text-sm font-medium text-gray-700";
+
+  // Input styling.
+  const inputClass = isDarkMode
+    ? "mt-1 p-2 w-full border rounded-md bg-gray-700 border-gray-600 text-white outline-none"
+    : "mt-1 p-2 w-full border rounded-md bg-white border-gray-300 text-gray-900 outline-none";
+
+  // Link styling.
+  const linkClass = isDarkMode
+    ? "text-blue-400 hover:text-blue-300"
+    : "text-blue-600 hover:text-blue-500";
+
+  // Message styling.
+  const errorMsgClass = isDarkMode
+    ? "text-red-400 text-center"
+    : "text-red-600 text-center";
+    
+  const successMsgClass = isDarkMode
+    ? "text-green-400 text-center"
+    : "text-green-600 text-center";
+
+  // Button styling remains similar for both themes.
+  const buttonClass = "w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700";
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm">
+    <div className={containerClass}>
+      <div className={formContainerClass}>
         <div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className={headingClass}>
             Create a new account
           </h2>
         </div>
 
         {errorMessage && (
-          <div className="text-red-600 dark:text-red-400 text-center">{errorMessage}</div>
+          <div className={errorMsgClass}>{errorMessage}</div>
         )}
 
         {successMessage && (
-          <div className="text-green-600 dark:text-green-400 text-center">{successMessage}</div>
+          <div className={successMsgClass}>{successMessage}</div>
         )}
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm space-y-4">
+          <div className="rounded-md space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="username" className={labelClass}>
                 Username
               </label>
               <input
@@ -54,14 +100,14 @@ const SignUp = () => {
                 name="username"
                 type="text"
                 required
-                className="mt-1 p-2 w-full border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white outline-none"
+                className={inputClass}
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
               />
             </div>
 
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="name" className={labelClass}>
                 Full Name
               </label>
               <input
@@ -69,14 +115,14 @@ const SignUp = () => {
                 name="name"
                 type="text"
                 required
-                className="mt-1 p-2 w-full border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white outline-none"
+                className={inputClass}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="email" className={labelClass}>
                 Email address
               </label>
               <input
@@ -85,14 +131,14 @@ const SignUp = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="mt-1 p-2 w-full border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white outline-none"
+                className={inputClass}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="password" className={labelClass}>
                 Password
               </label>
               <input
@@ -100,14 +146,14 @@ const SignUp = () => {
                 name="password"
                 type="password"
                 required
-                className="mt-1 p-2 w-full border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white outline-none"
+                className={inputClass}
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="confirmPassword" className={labelClass}>
                 Confirm Password
               </label>
               <input
@@ -115,23 +161,20 @@ const SignUp = () => {
                 name="confirmPassword"
                 type="password"
                 required
-                className="mt-1 p-2 w-full border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white outline-none"
+                className={inputClass}
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
               />
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
-          >
+          <button type="submit" className={buttonClass}>
             Create Account
           </button>
 
-          <div className="text-center text-sm text-gray-600 dark:text-gray-300">
+          <div className="text-center text-sm mt-4">
             Already have an account?{' '}
-            <Link to="/signin" className="text-blue-600 hover:text-blue-500 dark:text-blue-400">
+            <Link to="/signin" className={linkClass}>
               Sign in
             </Link>
           </div>
