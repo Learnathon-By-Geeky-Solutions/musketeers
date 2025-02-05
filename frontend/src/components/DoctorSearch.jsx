@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useTheme } from "../Contexts/ThemeContext";
 
 const DoctorSearch = ({ handleSearch, searchQuery, setSearchQuery }) => {
@@ -120,8 +121,8 @@ const DoctorSearch = ({ handleSearch, searchQuery, setSearchQuery }) => {
                 }
               >
                 <option value="">Select Specialty</option>
-                {specialties.map((spec, idx) => (
-                  <option key={idx} value={spec}>
+                {specialties.map((spec) => (
+                  <option key={spec} value={spec}>
                     {spec}
                   </option>
                 ))}
@@ -138,8 +139,8 @@ const DoctorSearch = ({ handleSearch, searchQuery, setSearchQuery }) => {
                 }
               >
                 <option value="">Choose Location</option>
-                {districts.map((district, idx) => (
-                  <option key={idx} value={district}>
+                {districts.map((district) => (
+                  <option key={district} value={district}>
                     {district}
                   </option>
                 ))}
@@ -157,6 +158,16 @@ const DoctorSearch = ({ handleSearch, searchQuery, setSearchQuery }) => {
       </div>
     </div>
   );
+};
+
+DoctorSearch.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+  searchQuery: PropTypes.shape({
+    name: PropTypes.string,
+    specialty: PropTypes.string,
+    location: PropTypes.string,
+  }).isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
 };
 
 export default DoctorSearch;

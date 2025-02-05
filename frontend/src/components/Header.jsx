@@ -6,7 +6,7 @@ const Header = () => {
     const { isDarkMode, setIsDarkMode } = useTheme();
 
     return (
-        <nav className={`${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} shadow-sm border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+        <nav className={`${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} fixed w-full z-10 shadow-sm border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
