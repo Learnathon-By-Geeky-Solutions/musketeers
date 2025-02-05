@@ -38,17 +38,17 @@ const Footer = () => {
             <h4 className={sectionTitleClass}>Services</h4>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   Appointments
                 </a>
               </li>
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   EHR Management
                 </a>
               </li>
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   Telemedicine
                 </a>
               </li>
@@ -58,17 +58,17 @@ const Footer = () => {
             <h4 className={sectionTitleClass}>Company</h4>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   Careers
                 </a>
               </li>
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   Contact
                 </a>
               </li>
@@ -78,17 +78,17 @@ const Footer = () => {
             <h4 className={sectionTitleClass}>Legal</h4>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="#" className={linkClass}>
+                <a href="https://www.oshlil.com/" className={linkClass}>
                   Security
                 </a>
               </li>
