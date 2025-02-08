@@ -6,7 +6,7 @@ const HeroSection = () => {
 	const { isDarkMode } = useTheme();
 
 	return (
-		<div className={`max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+		<div className={`pt-24 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
 			<div className="grid md:grid-cols-2 gap-12 items-center">
 				<div>
 					<h1 className={`text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} sm:text-5xl md:text-6xl`}>

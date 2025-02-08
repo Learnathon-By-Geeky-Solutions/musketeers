@@ -1,10 +1,10 @@
-import HeroSection from './../components/HeroSection';
-import DoctorSearch from './../components/DoctorSearch';
-import Services from './../components/Services';
-import Stats from './../components/Stats';
+import HeroSection from '../components/HeroSection';
+import DoctorSearch from '../components/DoctorSearch';
+import Services from '../components/Services';
+import Stats from '../components/Stats';
 import { useState } from 'react';
 
-const Home = () => {
+const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState({ name: '', specialty: '' });
   
   const handleSearch = (e) => {
@@ -22,4 +22,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

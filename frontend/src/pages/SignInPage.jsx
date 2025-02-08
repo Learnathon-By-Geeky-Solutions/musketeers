@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../Contexts/ThemeContext';
 
-const SignIn = () => {
+const SignInPage = () => {
   const { isDarkMode } = useTheme();
 
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your sign in logic here
-    console.log('Signing in with:', formData);
+    console.log('SigninPageg in with:', formData);
   };
 
   // Container background for the full screen.
@@ -123,4 +123,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInPage;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../Contexts/ThemeContext';
 
-const SignUp = () => {
+const SignUpPage = () => {
   const { isDarkMode } = useTheme();
 
   const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ const SignUp = () => {
       return;
     }
 
-    // Add your signup logic here
+    // Add your signupPage logic here
     console.log('Signing up with:', formData);
     setSuccessMessage('Account created successfully!');
     setErrorMessage('');
@@ -184,4 +184,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;
