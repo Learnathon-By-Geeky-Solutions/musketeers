@@ -10,7 +10,7 @@ const DoctorCard = ({ doctor }) => {
 		<div className={`h-fit max-w-96 p-4 rounded-lg shadow hover:shadow-lg transition ${isDarkMode? 'bg-gray-800': 'bg-white'}`}>
 			<div className='flex gap-5'>
 				<div className='w-24 h-24'>
-					<img src={doctor.photo} className='h-full w-full object-cover rounded-xl' />
+					<img src={doctor.photo} alt={doctor.name} className='h-full w-full object-cover rounded-xl' />
 				</div>
 				<div>
 					<h1 className='font-bold text-lg mb-2'>{doctor.name} </h1>

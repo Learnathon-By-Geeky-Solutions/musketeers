@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRightEndOnRectangleIcon, ArrowRightStartOnRectangleIcon, HomeIcon, PhoneIcon, QuestionMarkCircleIcon, WrenchScrewdriverIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "../Contexts/ThemeContext";
 import { useAuth } from "../Contexts/AuthContext";
+import PropTypes from 'prop-types';
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     const { isDarkMode } = useTheme();
@@ -61,3 +62,8 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 };
 
 export default Sidebar;
+
+Sidebar.propTypes = {
+    isSidebarOpen: PropTypes.bool.isRequired,
+    setIsSidebarOpen: PropTypes.func.isRequired,
+};

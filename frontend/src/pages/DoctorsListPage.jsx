@@ -95,8 +95,15 @@ const DoctorsListPage = () => {
 				<div className="max-w-7xl mx-auto px-4 flex justify-center gap-4">
 					{showFilter && (
 						<div
+							role='button'
+							tabIndex={0}
 							className="fixed inset-0 bg-black opacity-50 z-40 md:hidden"
 							onClick={() => setShowFilter(false)}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter' || e.key === ' ') {
+									setIsSidebarOpen(false);
+								}
+							}}
 						></div>
 					)}
 					{/* FilterSection */}
