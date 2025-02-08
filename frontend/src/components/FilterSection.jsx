@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "../Contexts/ThemeContext";
 import { ChevronUpIcon, ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { specialties, districts, priceRanges } from "./DoctorFilterParams";
 import PropTypes from 'prop-types';
+import AccordionContent from "./AccordionContent";
 
 const FilterSection = ({ showFilter, setShowFilter, items }) => {
     const { isDarkMode } = useTheme();
@@ -28,16 +28,6 @@ const FilterSection = ({ showFilter, setShowFilter, items }) => {
             }
         });
     }, [showMore, openItems]);
-
-    // Function to calculate height for smooth transitions
-    const getContentHeight = (index) => {
-        if (contentRefs.current[index]) {
-            return openItems.includes(index)
-                ? `${contentRefs.current[index].scrollHeight}px`
-                : "0px";
-        }
-        return "0px";
-    };
 
     // Conditional classes based on the theme (light or dark)
     const headerClass = isDarkMode
@@ -88,72 +78,7 @@ const FilterSection = ({ showFilter, setShowFilter, items }) => {
                             }}
                             className={contentClass}
                         >
-                            {
-                                item.id === 1 ? (
-                                    <>
-                                        <div className="my-2">
-                                            <input type="checkbox" />
-                                            <label className="ml-3">All Location</label>
-                                        </div>
-                                        <div className="my-2">
-                                            <input type="checkbox" />
-                                            <label className="ml-3">Nearby</label>
-                                        </div>
-                                        <div className="h-[1px] bg-gray-300" />
-                                        {showMore ?
-                                            districts.map(district =>
-                                                <div className="my-2" key={district}>
-                                                    <input type="checkbox" />
-                                                    <label className="ml-3">{district}</label>
-                                                </div>
-                                            ) :
-                                            districts.slice(0, 5).map(district =>
-                                                <div className="my-2" key={district}>
-                                                    <input type="checkbox" />
-                                                    <label className="ml-3">{district}</label>
-                                                </div>
-                                            )
-                                        }
-                                        {/* Conditionally render "See More" or "See Less" */}
-                                        {districts.length > 5 && (
-                                            <button
-                                                onClick={() => setShowMore(!showMore)}
-                                                className="mt-2 text-blue-500 hover:underline"
-                                            >
-                                                {showMore ? "See Less" : "See More"}
-                                            </button>
-                                        )}
-                                    </>
-                                ) : item.id === 2 ? (
-                                    <>
-                                        {specialties.map((specialty) => (
-                                            <div className="my-2" key={specialty}>
-                                                <input type="checkbox" />
-                                                <label className="ml-3">{specialty}</label>
-                                            </div>
-                                        ))}
-                                    </>
-                                ) : (
-                                    <>
-                                        <div>
-                                            <input
-                                                className="bg-gray-100 py-2 px-3 rounded-lg w-full outline-none my-2"
-                                                placeholder="Minimum Fee"
-                                            />
-                                            <input
-                                                className="bg-gray-100 py-2 px-3 rounded-lg w-full outline-none my-2"
-                                                placeholder="Maximum Fee"
-                                            />
-                                        </div>
-                                        {priceRanges.map((price) => (
-                                            <div className="my-2" key={price}>
-                                                <input type="checkbox" />
-                                                <label className="ml-3">{price}</label>
-                                            </div>
-                                        ))}
-                                    </>
-                                )
-                            }
+                            <AccordionContent item={item} showMore={showMore} setShowMore={setShowMore}/>
                         </div>
                     </div>
                 ))}
