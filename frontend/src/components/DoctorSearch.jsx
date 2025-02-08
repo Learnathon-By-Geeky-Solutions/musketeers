@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useTheme } from "../Contexts/ThemeContext";
+import { specialties, districts } from "./DoctorFilterParams";
 
 const DoctorSearch = ({ handleSearch, searchQuery, setSearchQuery }) => {
   const { isDarkMode } = useTheme();
@@ -14,85 +15,6 @@ const DoctorSearch = ({ handleSearch, searchQuery, setSearchQuery }) => {
   const inputClass = isDarkMode
     ? "p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
     : "p-3 border rounded-lg bg-white border-gray-300 text-gray-900";
-
-  // List of doctor specialties
-  const specialties = [
-    "Cardiology",
-    "Dermatology",
-    "Neurology",
-    "Pediatrics",
-    "Orthopedics",
-    "Psychiatry",
-    "General Surgery",
-    "Ophthalmology",
-    "Gynecology",
-    "ENT",
-  ];
-
-  // List of districts in Bangladesh
-  const districts = [
-    "Barguna",
-    "Barisal",
-    "Bhola",
-    "Jhalokati",
-    "Patuakhali",
-    "Pirojpur",
-    "Bandarban",
-    "Brahmanbaria",
-    "Chandpur",
-    "Chittagong",
-    "Comilla",
-    "Cox's Bazar",
-    "Feni",
-    "Khagrachhari",
-    "Lakshmipur",
-    "Noakhali",
-    "Rangamati",
-    "Dhaka",
-    "Faridpur",
-    "Gazipur",
-    "Gopalganj",
-    "Jamalpur",
-    "Kishoreganj",
-    "Madaripur",
-    "Manikganj",
-    "Munshiganj",
-    "Mymensingh",
-    "Narayanganj",
-    "Narsingdi",
-    "Rajbari",
-    "Shariatpur",
-    "Bogra",
-    "Joypurhat",
-    "Naogaon",
-    "Natore",
-    "Chapai Nawabganj",
-    "Pabna",
-    "Rajshahi",
-    "Sirajganj",
-    "Dinajpur",
-    "Gaibandha",
-    "Kurigram",
-    "Lalmonirhat",
-    "Nilphamari",
-    "Panchagarh",
-    "Rangpur",
-    "Thakurgaon",
-    "Habiganj",
-    "Moulvibazar",
-    "Sunamganj",
-    "Khulna",
-    "Bagerhat",
-    "Chuadanga",
-    "Jashore",
-    "Jhenaidah",
-    "Kushtia",
-    "Magura",
-    "Meherpur",
-    "Narail",
-    "Satkhira",
-    "Sylhet",
-  ];
 
   return (
     <div className={containerClass}>

@@ -1,0 +1,1 @@
+i added a responsive doctor list page with a filter section. added a sidebar. that wil appear in mobile view. write a commit message for me

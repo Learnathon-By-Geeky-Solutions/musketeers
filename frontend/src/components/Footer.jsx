@@ -29,7 +29,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className={brandTitleClass}>MediBook</h3>
+            <h3 className={brandTitleClass}>PulsePoint</h3>
             <p className="mt-4">
               Transforming healthcare through digital innovation
             </p>
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={`mt-8 pt-8 border-t ${borderClass} text-center`}>
-          <p>&copy; 2023 MediBook. All rights reserved.</p>
+          <p>&copy; 2023 PulsePoint. All rights reserved.</p>
         </div>
       </div>
     </footer>
