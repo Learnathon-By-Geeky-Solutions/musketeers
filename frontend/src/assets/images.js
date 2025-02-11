@@ -1,1 +1,0 @@
-export const DOCTOR_SEARCH_PAGE_BANNER = 'https://www.cancercare.mb.ca/export/sites/default/Treatments/.galleries/images/side-effects-images/doctorpatient_shutterstock_271845803.jpg';
